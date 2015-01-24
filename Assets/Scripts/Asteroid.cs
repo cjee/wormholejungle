@@ -12,7 +12,7 @@ public class Asteroid : AbstractEnemy {
 		rigidbody2D.velocity = velocity * (new Vector2 (-1.0f, 0.0f));
 	}
 
-	void OnCollisionEnter2D(Collision2D other)
+	protected void OnCollisionEnter2D(Collision2D other)
 	{
 		base.OnCollisionEnter2D (other);
 

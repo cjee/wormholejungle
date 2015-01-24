@@ -12,7 +12,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 	}
 
 	
-	public void OnCollisionEnter2D(Collision2D other)
+	protected void OnCollisionEnter2D(Collision2D other)
 	{
 		health--;
 		if (health == 0) 

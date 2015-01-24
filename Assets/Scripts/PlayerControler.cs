@@ -23,14 +23,19 @@ public class PlayerControler : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Vertical");
 		
 		Vector2 movement = new Vector2(moveHorizontal,moveVertical);
+
+		//movement += GetTouchOffset ();
 		
 		rigidbody2D.velocity = movement * speed;
 
-		foreach(Touch t in Input.touches)
-		{
-			rigidbody2D.velocity+=t.deltaPosition;
-		}
 
+		if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+		{
+			//Get movement of the finger since the last frame
+			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+			// Move object across the X and Y plane
+			transform.Translate (touchDeltaPosition.x * 0.05f, touchDeltaPosition.y * 0.05f, 0);
+		}
 
 		
 		Vector3 bottomLeftWorldCoordinates = Camera.main.ViewportToWorldPoint(Vector3.zero);
@@ -52,5 +57,53 @@ public class PlayerControler : MonoBehaviour {
 			nextFire=Time.time+fireRate;
 			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
 		}
+	}
+
+
+	
+	int fingerID=-1;
+	Vector2 position;
+	
+	public Vector2 GetTouchOffset()
+	{
+		if (fingerID == -1 && Input.touchCount > 1)
+			return new Vector2(0.0f,0.0f);
+		else if (Input.touchCount == 0) 
+		{
+			fingerID=-1;
+		}
+		else if (fingerID==-1)
+		{
+			fingerID = Input.GetTouch (0).fingerId;
+			position=Input.GetTouch(0).position;
+		}
+		else
+		{
+			Vector2 new_position=Vector2.zero;
+			bool valid=false;
+			foreach(Touch t in Input.touches)
+			{
+				if(t.fingerId==fingerID)
+				{
+					valid=true;
+					new_position=t.position;
+					break;
+				}
+			}
+			
+			if(valid==false)
+			{
+				fingerID=-1;
+				return new Vector2(0.0f,0.0f);
+			}
+			
+			new_position-=position;
+			new_position=new_position/Camera.main.pixelHeight/0.2f;
+			return new Vector2(
+				Mathf.Clamp(-1.0f,new_position.x,1.0f),
+				Mathf.Clamp(-1.0f,new_position.y,1.0f)
+				);
+		}
+		return new Vector2(0.0f,0.0f);
 	}
 }
