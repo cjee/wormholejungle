@@ -13,9 +13,7 @@ public class PlayerControler : MonoBehaviour {
 	float lasthit = 0.0f;
 	protected void OnCollisionEnter2D(Collision2D other)
 	{
-		Debug.Log (Time.fixedTime);
 		if (Time.fixedTime - lasthit > 0.5f) {
-						Debug.Log ("colision");
 						GameState.Instance.PlayerHit ();
 		
 						lasthit = Time.fixedTime;

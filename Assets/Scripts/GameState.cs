@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GameState : MonoBehaviour {
 	//TODO:
@@ -14,7 +15,7 @@ public class GameState : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Seting up state
-		this.PlayerHealth = PlayerHealth;
+		//this.PlayerHealth = PlayerHealth;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +27,11 @@ public class GameState : MonoBehaviour {
 	{
 		for(int i =0; i< this.PlayerHealth; i++)
 		GUI.DrawTexture (new Rect (10 + i*29, 10, 20, 27), HealthPicture);
+		TimeSpan span = TimeSpan.FromSeconds (Time.timeSinceLevelLoad);
+
+		var style = new GUIStyle ();
+
+		GUI.Label (new Rect (Screen.width/2 - 50, 10, 100, 30), string.Format("{0:00}:{1:00}:{2:00}", span.Hours,span.Minutes, span.Seconds));
 	}
 
 	public void PlayerHit()
@@ -43,7 +49,6 @@ public class GameState : MonoBehaviour {
 	private IEnumerator RestartGame()
 	{
 		float length = gameObject.GetComponent<Fading> ().Begin (1);
-		Debug.Log (length);
 		yield return new WaitForSeconds (length);
 		Application.LoadLevel ("Main 1");
 	}
