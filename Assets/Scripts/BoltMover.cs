@@ -9,4 +9,9 @@ public class BoltMover : MonoBehaviour {
 	void Start () {
 		rigidbody2D.velocity = speed * (new Vector2 (1.0f, 0.0f));
 	}
+
+	void OnCollision2D(Collider2D other)
+	{
+		Destroy (gameObject);
+	}
 }
