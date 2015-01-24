@@ -12,7 +12,7 @@ public class Asteroid : AbstractEnemy {
 	{
 		base.OnCollisionEnter2D (other);
 
-		if (other.gameObject.GetType () == gameObject.GetType () && health>0) 
+		if (other.gameObject.tag.Equals("LargeAsteriod") && health>0) 
 		{
 			health=0;
 		}
