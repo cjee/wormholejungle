@@ -7,6 +7,7 @@ TextureImporter:
     21300004: New Piskel (5)_2
     21300006: New Piskel (5)_3
     21300008: New Piskel (5)_4
+    21300010: New Piskel (5)_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,51 +53,51 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 69
         width: 320
-        height: 320
+        height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: New Piskel (5)_1
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: New Piskel (5)_2
       rect:
         serializedVersion: 2
-        x: 640
-        y: 0
+        x: 320
+        y: 69
         width: 320
-        height: 320
+        height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: New Piskel (5)_3
       rect:
         serializedVersion: 2
-        x: 960
-        y: 0
+        x: 640
+        y: 69
         width: 320
-        height: 320
+        height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: New Piskel (5)_5
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 69
+        width: 320
+        height: 184
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: New Piskel (5)_4
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 0
+        x: 960
+        y: 69
         width: 320
-        height: 320
+        height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
