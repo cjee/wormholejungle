@@ -15,8 +15,8 @@ public class DestroyByBoundary : MonoBehaviour {
 		float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 		BoxCollider2D col = (BoxCollider2D)collider2D;
 		col.size= new Vector2(
-			worldScreenWidth+2,
-			worldScreenHeight);
+			worldScreenWidth+4,
+			worldScreenHeight+4);
 
 	}
 
