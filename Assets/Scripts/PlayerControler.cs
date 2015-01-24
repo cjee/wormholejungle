@@ -10,6 +10,7 @@ public class PlayerControler : MonoBehaviour {
 	public Transform shotSpawn;
 	private float nextFire;
 
+
 	void FixedUpdate()
 	{
 		Move ();
@@ -24,6 +25,13 @@ public class PlayerControler : MonoBehaviour {
 		Vector2 movement = new Vector2(moveHorizontal,moveVertical);
 		
 		rigidbody2D.velocity = movement * speed;
+
+		foreach(Touch t in Input.touches)
+		{
+			rigidbody2D.velocity+=t.deltaPosition;
+		}
+
+
 		
 		Vector3 bottomLeftWorldCoordinates = Camera.main.ViewportToWorldPoint(Vector3.zero);
 		Vector3 topRightWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(1,1,0));
