@@ -10,6 +10,8 @@ public class Asteroid : AbstractEnemy {
 
 	protected void OnCollisionEnter2D(Collision2D other)
 	{
+		if (other.gameObject.tag == "Portal")
+						return;
 		base.OnCollisionEnter2D (other);
 
 		if (other.gameObject.tag.Equals("LargeAsteriod") && health>0) 

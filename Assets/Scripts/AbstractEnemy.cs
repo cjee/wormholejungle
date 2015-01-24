@@ -15,6 +15,9 @@ public abstract class AbstractEnemy : MonoBehaviour {
 	
 	protected void OnCollisionEnter2D(Collision2D other)
 	{
+		if (other.gameObject.tag == "Portal")
+			return;
+		
 		health--;
 		if (health <= 0) 
 		{

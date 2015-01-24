@@ -113,8 +113,8 @@ public class PlayerControler : MonoBehaviour {
 			new_position-=position;
 			new_position=new_position/Camera.main.pixelHeight/0.2f;
 			return new Vector2(
-				Mathf.Clamp(-1.0f,new_position.x,1.0f),
-				Mathf.Clamp(-1.0f,new_position.y,1.0f)
+				Mathf.Clamp(new_position.x,-1.0f,1.0f),
+				Mathf.Clamp(new_position.y,-1.0f,1.0f)
 				);
 		}
 		return new Vector2(0.0f,0.0f);
