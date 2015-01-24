@@ -10,7 +10,6 @@ public class DestroyByBoundary : MonoBehaviour {
 
 	void Resize()
 	{
-		SpriteRenderer sr = GetComponent<SpriteRenderer>();
 		
 		float worldScreenHeight = Camera.main.orthographicSize * 2;
 		float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;

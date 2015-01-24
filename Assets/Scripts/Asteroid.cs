@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Asteroid : MonoBehaviour {
+public class Asteroid : GlobalAsteriod {
 
-	public int health;
 
-	void OnCollision2D(Collider2D col)
+	void Start()
 	{
-		health--;
-		if (health <= 0) 
-		{
-			Destroy(gameObject);
-		}
+		rigidbody2D.velocity = speed * (new Vector2 (-1.0f, 0.0f));
 	}
 
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		base.OnCollisionEnter2D (other);
+
+		if (health <= 0) 
+		{
+
+		}
+	}
 }
