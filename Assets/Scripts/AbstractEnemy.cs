@@ -3,19 +3,20 @@ using System.Collections;
 
 public abstract class AbstractEnemy : MonoBehaviour {
 	
-	public float velocity;
+	public float velocityMin;
+	public float velocityMax;
 	public int health;
 
-	void Start()
+	protected void Start()
 	{
-		rigidbody2D.velocity = velocity * (new Vector2 (-1.0f, 0.0f));
+		rigidbody2D.velocity = Random.Range(velocityMin,velocityMax) * (new Vector2 (-1.0f, 0.0f));
 	}
 
 	
 	protected void OnCollisionEnter2D(Collision2D other)
 	{
 		health--;
-		if (health == 0) 
+		if (health <= 0) 
 		{
 			Destroy(gameObject);
 		}

@@ -5,7 +5,6 @@ public class RandomGenerator : MonoBehaviour {
 
 	public float minDelta;
 	public float maxDelta;
-	public float velocity;
 	public GameObject target;
 	public int seed;
 

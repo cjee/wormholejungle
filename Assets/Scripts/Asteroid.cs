@@ -7,10 +7,6 @@ public class Asteroid : AbstractEnemy {
 	public GameObject part2;
 	public GameObject part3;
 
-	void Start()
-	{
-		rigidbody2D.velocity = velocity * (new Vector2 (-1.0f, 0.0f));
-	}
 
 	protected void OnCollisionEnter2D(Collision2D other)
 	{

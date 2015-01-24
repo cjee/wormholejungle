@@ -6,10 +6,18 @@ public class Junk1 : AbstractEnemy {
 	public float RotationSpeed;
 
 	// Use this for initialization
-	void Start () {
-		rigidbody2D.velocity = velocity * (new Vector2 (-1.0f, 0.0f));
+	protected void Start () {
+		base.Start ();
 		rigidbody2D.angularVelocity = RotationSpeed;
 
 	}
+
+	protected void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.tag.Equals(gameObject.tag)==false)
+						base.OnCollisionEnter2D (other);
+	}
+
+
 
 }
