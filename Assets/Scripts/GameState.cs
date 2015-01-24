@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Seting up state
-		this.PlayerHealth = 6;
+		this.PlayerHealth = PlayerHealth;
 	}
 	
 	// Update is called once per frame
@@ -35,13 +35,17 @@ public class GameState : MonoBehaviour {
 		if(this.PlayerHealth <= 0)
 		{
 			Destroy(Player);
-			RestartGame();
+		 	StartCoroutine(RestartGame());
 
 		}
 	}
 
-	private void RestartGame()
+	private IEnumerator RestartGame()
 	{
+		float length = gameObject.GetComponent<Fading> ().Begin (1);
+		Debug.Log (length);
+		yield return new WaitForSeconds (length);
+		Application.LoadLevel ("Main 1");
 	}
 
 
