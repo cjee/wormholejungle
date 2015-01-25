@@ -6,6 +6,7 @@ public class Animations {
 
 	public static IEnumerator shrinkAndDestroy(GameObject o, Vector3 coordinates)
 	{
+		if(o != null && o.tag.Equals("Player") == false)
 		o.collider2D.enabled = false;
 
 		Vector3 deltaMove = coordinates - o.transform.position;
@@ -39,7 +40,8 @@ public class Animations {
 			yield return new WaitForSeconds(0.03f);
 		}
 
-		MonoBehaviour.Destroy (o);
+		if(o != null && o.tag.Equals("Player") == false)
+			MonoBehaviour.Destroy (o);
 
 	}
 }

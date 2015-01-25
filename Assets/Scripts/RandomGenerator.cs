@@ -12,9 +12,9 @@ public class RandomGenerator : MonoBehaviour {
 
 	void Start()
 	{
-		if(seed==0)
-			seed=(int)Time.time;
-		Random.seed = seed;
+//		if(seed==0)
+//			seed=(int)Time.time;
+//		Random.seed = seed;
 	}
 
 	

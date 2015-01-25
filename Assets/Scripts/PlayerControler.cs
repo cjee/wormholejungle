@@ -13,13 +13,19 @@ public class PlayerControler : MonoBehaviour {
 	float lasthit = 0.0f;
 	protected void OnCollisionEnter2D(Collision2D other)
 	{
-		if (Time.fixedTime - lasthit > 0.5f) {
-						GameState.Instance.PlayerHit ();
-		
-						lasthit = Time.fixedTime;
-				}
+		var obj = GameObject.Find ("GameStateManager").GetComponent<GameState> ().Instance;
+				if (other.gameObject.tag.Equals ("Portal")) {
+
+						obj.PortalHit();
+				} else {
+
+						if (Time.fixedTime - lasthit > 0.5f) {
+								obj.PlayerHit ();
+								lasthit = Time.fixedTime;
+						}
 				
-	}
+				}
+		}
 
 
 	void FixedUpdate()
