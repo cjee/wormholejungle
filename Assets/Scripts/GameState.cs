@@ -63,8 +63,11 @@ public class GameState : MonoBehaviour {
 		for(int i =0; i< this.PlayerHealth; i++)
 		GUI.DrawTexture (new Rect (10 + i*29, 10, 20, 27), HealthPicture);
 		TimeSpan span = TimeSpan.FromSeconds (Time.timeSinceLevelLoad);
+		GUIStyle style = new GUIStyle ();
+		style.fontSize = 21;
+		style.normal.textColor = Color.white;
 
-		GUI.Label (new Rect (Screen.width/2 - 50, 10, 100, 30), string.Format("{0:00}:{1:00}:{2:00}", span.Hours,span.Minutes, span.Seconds));
+		GUI.Label (new Rect (Screen.width/2 - 50, 10, 100, 30), string.Format("{0:00}:{1:00}:{2:00}", span.Hours,span.Minutes, span.Seconds),style);
 	}
 
 	public void PlayerHit()
