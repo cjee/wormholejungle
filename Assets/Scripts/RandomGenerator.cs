@@ -12,6 +12,7 @@ public class RandomGenerator : MonoBehaviour {
 
 	void Start()
 	{
+		time = Time.time + Random.Range (minDelta, maxDelta);
 //		if(seed==0)
 //			seed=(int)Time.time;
 //		Random.seed = seed;

@@ -18,6 +18,8 @@ public class GameState : MonoBehaviour {
 	public GameObject Player;
 	public Texture HealthPicture;
 
+	private GameObject playerObject;
+
 	List<Texture> backgrounds = new List<Texture>();
 	List<GameObject> generators = new List<GameObject>();
 
@@ -57,7 +59,7 @@ public class GameState : MonoBehaviour {
 		this.PlayerHealth = this.PlayerHealth - 1;
 		if(this.PlayerHealth <= 0)
 		{
-			Destroy(Player);
+			Destroy(playerObject);
 		 	StartCoroutine(RestartGame());
 
 		}
@@ -81,8 +83,8 @@ public class GameState : MonoBehaviour {
 		if (navigate) {
 			Debug.Log (navigate);
 		 	StartCoroutine(LightsOff());
-						
-				
+
+
 				}
 
 		//var rnd = new System.Random ();
@@ -96,12 +98,16 @@ public class GameState : MonoBehaviour {
 		DisableGenerators ();
 		int gencount = Convert.ToInt32(UnityEngine.Random.Range (1.0f, 3.0f));
 
+		
 		for (int i = 0; i< gencount; i++) {
 			EnableGenerator(generators[Convert.ToInt32(UnityEngine.Random.Range (0.0f, 3.0f))]);
 		}
 
-		if (navigate)
-					StartCoroutine (LightsOn());
+		if (navigate) {
+			playerObject = UnityEngine.Object.Instantiate(Player) as GameObject;
+		}
+
+		return;
 		
 	}
 
@@ -109,6 +115,9 @@ public class GameState : MonoBehaviour {
 	{
 
 		float length = gameObject.GetComponent<Fading> ().Begin (1);
+		yield return new WaitForSeconds (length);
+		var clones = GameObject.FindGameObjectsWithTag ("clone"); foreach (var clone in clones){ Destroy(clone); }
+		 length = gameObject.GetComponent<Fading> ().Begin (-1);
 		yield return new WaitForSeconds (length);
 	}
 

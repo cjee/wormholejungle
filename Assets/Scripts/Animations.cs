@@ -6,8 +6,7 @@ public class Animations {
 
 	public static IEnumerator shrinkAndDestroy(GameObject o, Vector3 coordinates)
 	{
-		if(o != null && o.tag.Equals("Player") == false)
-		o.collider2D.enabled = false;
+			o.collider2D.enabled = false;
 
 		Vector3 deltaMove = coordinates - o.transform.position;
 		Vector3 absMove = new Vector3 (Mathf.Abs (deltaMove.x), Mathf.Abs (deltaMove.y));
@@ -40,8 +39,8 @@ public class Animations {
 			yield return new WaitForSeconds(0.03f);
 		}
 
-		if(o != null && o.tag.Equals("Player") == false)
-			MonoBehaviour.Destroy (o);
+
+		MonoBehaviour.Destroy (o);
 
 	}
 }
