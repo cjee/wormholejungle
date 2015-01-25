@@ -25,8 +25,8 @@ public class GameState : MonoBehaviour {
 	void Start () {
 		//Seting up state
 		//this.PlayerHealth = PlayerHealth;
-		backgrounds.Add (Resources.Load<Texture> ("bacground_1"));
-		backgrounds.Add (Resources.Load<Texture> ("bacground_2"));
+		backgrounds.Add (Resources.Load<Texture> ("bacground_11"));
+		backgrounds.Add (Resources.Load<Texture> ("bacground_12"));
 
 
 		generators.Add (GameObject.Find ("RandomGenerator"));
@@ -79,26 +79,25 @@ public class GameState : MonoBehaviour {
 	private void PrepareLevel(bool navigate = true)
 	{	
 		if (navigate) {
-			Debug.Log ("GoingDark");
+			Debug.Log (navigate);
 		 	StartCoroutine(LightsOff());
 						
 				
 				}
 
-
-		var rnd = new System.Random ();
-		
+		//var rnd = new System.Random ();
 		//background
-		var bkg = GameObject.Find ("Quad");
-		var backgid = rnd.Next(0, backgrounds.Count);
+		GameObject bkg = GameObject.Find ("Quad");
+		int backgid = Convert.ToInt32(UnityEngine.Random.Range (0.0f, backgrounds.Count-1.0f));
+
 		bkg.renderer.material.mainTexture = backgrounds [backgid];
 
 		//generators
 		DisableGenerators ();
-		var gencount = rnd.Next (1, 4);
+		int gencount = Convert.ToInt32(UnityEngine.Random.Range (1.0f, 3.0f));
 
 		for (int i = 0; i< gencount; i++) {
-			EnableGenerator(generators[rnd.Next(0,4)], rnd);
+			EnableGenerator(generators[Convert.ToInt32(UnityEngine.Random.Range (0.0f, 3.0f))]);
 		}
 
 		if (navigate)
@@ -119,14 +118,14 @@ public class GameState : MonoBehaviour {
 		yield return new WaitForSeconds (length);
 	}
 
-	void EnableGenerator(GameObject r, System.Random rnd)
+	void EnableGenerator(GameObject r)
 	{
 		r.SetActive (true);
 		var gen = r.GetComponent<RandomGenerator> ();
 		if (gen == null)
 						Debug.LogError ("Ǵeneratoram nav randomizétája");
-		gen.minDelta = rnd.Next (4, 9) / 10.0f;
-		gen.maxDelta = rnd.Next (10, 15) / 10.0f;
+		gen.minDelta = UnityEngine.Random.Range (0.4f, 0.9f);
+		gen.maxDelta = UnityEngine.Random.Range (1.0f, 1.5f);
 	}
 
 	private void DisableGenerators()

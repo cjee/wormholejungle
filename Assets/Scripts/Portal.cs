@@ -11,10 +11,12 @@ public class Portal : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collider)
 	{
+		/*
 		if (collider.rigidbody == null)
 						return;
 		collider.gameObject.rigidbody2D.velocity = rigidbody2D.velocity;
 		StartCoroutine(Animations.shrinkAndDestroy(collider.gameObject,gameObject.transform.position));
+		*/
 	}
 
 }
