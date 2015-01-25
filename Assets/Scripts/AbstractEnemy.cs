@@ -6,6 +6,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 	public float velocityMin;
 	public float velocityMax;
 	public int health;
+	public GameObject explosion;
 
 	protected void Start()
 	{
@@ -21,6 +22,10 @@ public abstract class AbstractEnemy : MonoBehaviour {
 		health--;
 		if (health <= 0) 
 		{
+			if(explosion!=null)
+			{
+				Instantiate(explosion,transform.position,new Quaternion());
+			}
 			Destroy(gameObject);
 		}
 	}

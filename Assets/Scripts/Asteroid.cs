@@ -7,6 +7,12 @@ public class Asteroid : AbstractEnemy {
 	public GameObject part2;
 	public GameObject part3;
 
+	void Start()
+	{
+		base.Start ();
+		rigidbody2D.angularVelocity = Random.Range (-150, 150);
+	}
+
 
 	protected void OnCollisionEnter2D(Collision2D other)
 	{

@@ -8,7 +8,7 @@ public class Junk2 : AbstractEnemy {
 	// Use this for initialization
 	protected void Start () {
 		base.Start ();
-		rigidbody2D.angularVelocity = RotationSpeed;
+		rigidbody2D.angularVelocity  = Random.Range (50, 150);
 
 	}
 	

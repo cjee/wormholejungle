@@ -3,12 +3,11 @@ using System.Collections;
 
 public class Junk1 : AbstractEnemy {
 
-	public float RotationSpeed;
 
 	// Use this for initialization
 	protected void Start () {
 		base.Start ();
-		rigidbody2D.angularVelocity = RotationSpeed;
+		rigidbody2D.angularVelocity = Random.Range (50, 150);
 
 	}
 
