@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RandomGenerator : MonoBehaviour {
 
@@ -12,14 +13,15 @@ public class RandomGenerator : MonoBehaviour {
 
 	void Start()
 	{
-		time = Time.time + Random.Range (minDelta, maxDelta);
+		//time = Time.time + Random.Range (minDelta, maxDelta);
 //		if(seed==0)
 //			seed=(int)Time.time;
 //		Random.seed = seed;
 	}
 
+
 	
-	void FixedUpdate()
+	public void FixedUpdate()
 	{
 
 
@@ -36,8 +38,16 @@ public class RandomGenerator : MonoBehaviour {
 			Random.Range (bottomLeftWorldCoordinates.y, topRightWorldCoordinates.y)
 		);
 	
-		//target.rigidbody2D.velocity =  * (new Vector2 (-1.0f, 0.0f))*velocity;
-		Instantiate(target,pos,new Quaternion());
+		var newitem = Instantiate (target, pos, new Quaternion ());
+
+		var obj = GameObject.Find("GameStateManager");
+		if (obj != null) {
+						var stuff = obj.GetComponent<GameState> ();
+
+
+						//target.rigidbody2D.velocity =  * (new Vector2 (-1.0f, 0.0f))*velocity;
+						stuff.Instance.items.Add (newitem as GameObject);
+		}
 
 	}
 }

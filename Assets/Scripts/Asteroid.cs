@@ -29,9 +29,21 @@ public class Asteroid : AbstractEnemy {
 		{
 			health=-1;
 			Destroy(gameObject);
-			Instantiate(part1,rigidbody2D.position.ToVector3()+(new Vector3(-1,1)),new Quaternion());
-			Instantiate(part2,rigidbody2D.position.ToVector3()+(new Vector3(1,1)),new Quaternion());
-			Instantiate(part3,rigidbody2D.position.ToVector3()+(new Vector3(0,-1)),new Quaternion());
+			var item1 = Instantiate(part1,rigidbody2D.position.ToVector3()+(new Vector3(-1,1)),new Quaternion());
+			var item2 = Instantiate(part2,rigidbody2D.position.ToVector3()+(new Vector3(1,1)),new Quaternion());
+			var item3 = Instantiate(part3,rigidbody2D.position.ToVector3()+(new Vector3(0,-1)),new Quaternion());
+
+
+			var obj = GameObject.Find("GameStateManager");
+			if (obj != null) {
+				var stuff = obj.GetComponent<GameState> ();
+				
+				
+				//target.rigidbody2D.velocity =  * (new Vector2 (-1.0f, 0.0f))*velocity;
+				stuff.Instance.items.Add (item1 as GameObject);
+				stuff.Instance.items.Add (item2 as GameObject);
+				stuff.Instance.items.Add (item3 as GameObject);
+			}
 		}
 
 	}

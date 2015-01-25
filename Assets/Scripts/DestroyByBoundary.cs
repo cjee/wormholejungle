@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DestroyByBoundary : MonoBehaviour {
-	
+
+	public bool Destryall = false;
+
 	void Start()
 	{
 		Resize ();
@@ -25,4 +28,6 @@ public class DestroyByBoundary : MonoBehaviour {
 		Destroy(col.gameObject);
 
 	}
+
+
 }

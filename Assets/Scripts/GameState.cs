@@ -18,6 +18,8 @@ public class GameState : MonoBehaviour {
 	public GameObject Player;
 	public Texture HealthPicture;
 
+	public List<GameObject> items;
+
 	private GameObject playerObject;
 
 	List<Texture> backgrounds = new List<Texture>();
@@ -25,10 +27,12 @@ public class GameState : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		items = new List<GameObject> ();
+		items.Add(GameObject.Find("PlayerRocket"));
 		//Seting up state
 		//this.PlayerHealth = PlayerHealth;
-		backgrounds.Add (Resources.Load<Texture> ("bacground_11"));
-		backgrounds.Add (Resources.Load<Texture> ("bacground_12"));
+		backgrounds.Add (Resources.Load<Texture> ("bacground_1"));
+		backgrounds.Add (Resources.Load<Texture> ("bacground_2"));
 
 
 		generators.Add (GameObject.Find ("RandomGenerator"));
@@ -103,9 +107,7 @@ public class GameState : MonoBehaviour {
 			EnableGenerator(generators[Convert.ToInt32(UnityEngine.Random.Range (0.0f, 3.0f))]);
 		}
 
-		if (navigate) {
-			playerObject = UnityEngine.Object.Instantiate(Player) as GameObject;
-		}
+
 
 		return;
 		
@@ -116,9 +118,17 @@ public class GameState : MonoBehaviour {
 
 		float length = gameObject.GetComponent<Fading> ().Begin (1);
 		yield return new WaitForSeconds (length);
-		var clones = GameObject.FindGameObjectsWithTag ("clone"); foreach (var clone in clones){ Destroy(clone); }
+		Clean ();
 		 length = gameObject.GetComponent<Fading> ().Begin (-1);
 		yield return new WaitForSeconds (length);
+	}
+	public void Clean()
+	{
+		foreach (var item in items)
+						Destroy (item);
+		items = new List<GameObject> ();
+		playerObject = UnityEngine.Object.Instantiate(Player) as GameObject;
+		items.Add(playerObject);
 	}
 
 	IEnumerator LightsOn()
