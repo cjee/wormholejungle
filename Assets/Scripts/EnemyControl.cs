@@ -19,7 +19,12 @@ public class EnemyControl : AbstractEnemy {
 		if (Time.time > nextFire) 
 		{
 			nextFire=Time.time+fireRate;
-			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			var shot_object=Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			var obj = GameObject.Find("GameStateManager");
+			if (obj != null) {
+				var stuff = obj.GetComponent<GameState> ();
+				stuff.Instance.items.Add (shot_object as GameObject);
+			}
 		}
 	}
 }

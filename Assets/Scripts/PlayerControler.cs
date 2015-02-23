@@ -14,18 +14,14 @@ public class PlayerControler : MonoBehaviour {
 	protected void OnCollisionEnter2D(Collision2D other)
 	{
 		var obj = GameObject.Find ("GameStateManager").GetComponent<GameState> ().Instance;
-				if (other.gameObject.tag.Equals ("Portal")) {
+		if (other.gameObject.tag.Equals ("Portal")) {
+			obj.PortalHit();
 
-						obj.PortalHit();
-				} else {
-
-						if (Time.fixedTime - lasthit > 0.5f) {
-								obj.PlayerHit ();
-								lasthit = Time.fixedTime;
-						}
-				
-				}
+		} else if(other.gameObject.tag.Equals ("Bolt")==false && Time.fixedTime - lasthit > 0.5f) {
+			obj.PlayerHit ();
+			lasthit = Time.fixedTime;
 		}
+	}
 
 
 	void FixedUpdate()
@@ -48,10 +44,13 @@ public class PlayerControler : MonoBehaviour {
 
 		if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
 		{
+			Touch touch=Input.GetTouch(0);
+
+			//float touch_speed=(touch.deltaPosition.magnitude/touch.deltaTime);
 			//Get movement of the finger since the last frame
-			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-			// Move object across the X and Y plane
-			transform.Translate (touchDeltaPosition.x * 0.05f, touchDeltaPosition.y * 0.05f, 0);
+			Vector2 velocity=touch.deltaPosition*4.0f;
+			velocity.x=Mathf.Clamp(velocity.x,-speed,speed);
+			rigidbody2D.velocity =velocity;//.normalized * speed;// Mathf.Min (speed, touch_speed);
 		}
 
 		
@@ -72,7 +71,12 @@ public class PlayerControler : MonoBehaviour {
 		if (Time.time > nextFire) 
 		{
 			nextFire=Time.time+fireRate;
-			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			var shot_object=Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			var obj = GameObject.Find("GameStateManager");
+			if (obj != null) {
+				var stuff = obj.GetComponent<GameState> ();
+				stuff.Instance.items.Add (shot_object as GameObject);
+			}
 		}
 	}
 
