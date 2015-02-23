@@ -84,8 +84,7 @@ public class GameState : MonoBehaviour {
 
 	public void PortalHit()
 	{
-
-				PrepareLevel (true);
+		StartCoroutine(LightsOff());
 		}
 
 	private IEnumerator RestartGame()
@@ -97,12 +96,12 @@ public class GameState : MonoBehaviour {
 
 	private void PrepareLevel(bool navigate = true)
 	{	
-		if (navigate) {
-			Debug.Log (navigate);
-		 	StartCoroutine(LightsOff());
-
-
-				}
+//		if (navigate) {
+//			Debug.Log (navigate);
+//		 	StartCoroutine(LightsOff());
+//
+//
+//				}
 
 		//var rnd = new System.Random ();
 		//background
@@ -142,6 +141,8 @@ public class GameState : MonoBehaviour {
 		items = new List<GameObject> ();
 		playerObject = UnityEngine.Object.Instantiate(Player) as GameObject;
 		items.Add(playerObject);
+		PrepareLevel (true);
+		
 	}
 
 	IEnumerator LightsOn()
