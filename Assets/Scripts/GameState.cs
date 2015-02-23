@@ -60,14 +60,21 @@ public class GameState : MonoBehaviour {
 
 	void OnGUI()
 	{
+		var dpi = Screen.dpi;
+
 		for(int i =0; i< this.PlayerHealth; i++)
-		GUI.DrawTexture (new Rect (10 + i*29, 10, 20, 27), HealthPicture);
+		GUI.DrawTexture (new Rect (gpx(0.10f) + i*gpx(0.29f), gpx(0.10f), gpx(0.20f), gpx(0.27f)), HealthPicture);
 		TimeSpan span = TimeSpan.FromSeconds (Time.timeSinceLevelLoad);
 		GUIStyle style = new GUIStyle ();
-		style.fontSize = 21;
+		style.fontSize = Convert.ToInt32( Math.Floor(gpx(0.21f)));
 		style.normal.textColor = Color.white;
 
-		GUI.Label (new Rect (Screen.width/2 - 50, 10, 100, 30), string.Format("{0:00}:{1:00}:{2:00}", span.Hours,span.Minutes, span.Seconds),style);
+		GUI.Label (new Rect (Screen.width/2 - gpx(0.50f), gpx(0.10f), gpx(1.00f), gpx(0.30f)), string.Format("{0:00}:{1:00}:{2:00}", span.Hours,span.Minutes, span.Seconds),style);
+	}
+
+	private float gpx(float input)
+	{
+		return input * Screen.dpi;
 	}
 
 	public void PlayerHit()
