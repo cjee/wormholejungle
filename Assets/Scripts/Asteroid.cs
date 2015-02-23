@@ -27,11 +27,12 @@ public class Asteroid : AbstractEnemy {
 		
 		if (health == 0) 
 		{
+			Quaternion rotation=transform.rotation;
 			health=-1;
 			Destroy(gameObject);
-			var item1 = Instantiate(part1,rigidbody2D.position.ToVector3()+(new Vector3(-1,1)),new Quaternion());
-			var item2 = Instantiate(part2,rigidbody2D.position.ToVector3()+(new Vector3(1,1)),new Quaternion());
-			var item3 = Instantiate(part3,rigidbody2D.position.ToVector3()+(new Vector3(0,-1)),new Quaternion());
+			var item1 = Instantiate(part1,rigidbody2D.position.ToVector3(),rotation);
+			var item2 = Instantiate(part2,rigidbody2D.position.ToVector3(),rotation);
+			var item3 = Instantiate(part3,rigidbody2D.position.ToVector3(),rotation);
 
 
 			var obj = GameObject.Find("GameStateManager");
