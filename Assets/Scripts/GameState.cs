@@ -60,8 +60,6 @@ public class GameState : MonoBehaviour {
 
 	void OnGUI()
 	{
-		var dpi = Screen.dpi;
-
 		for(int i =0; i< this.PlayerHealth; i++)
 		GUI.DrawTexture (new Rect (gpx(0.10f) + i*gpx(0.29f), gpx(0.10f), gpx(0.20f), gpx(0.27f)), HealthPicture);
 		TimeSpan span = TimeSpan.FromSeconds (Time.timeSinceLevelLoad);
@@ -74,7 +72,7 @@ public class GameState : MonoBehaviour {
 
 	private float gpx(float input)
 	{
-		return input * Screen.dpi;
+		return input * Mathf.Min (Screen.width,Screen.height) * 0.2f;
 	}
 
 	public void PlayerHit()
