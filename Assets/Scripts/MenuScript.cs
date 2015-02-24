@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
+
 using System.Collections;
 
 public class MenuScript : MonoBehaviour {
@@ -36,5 +39,19 @@ public class MenuScript : MonoBehaviour {
 		Application.LoadLevel ("Main");
 		
 	}
+	public Text ScoreText;
 
+	void OnGUI()
+	{
+		int score = PlayerPrefs.GetInt("highscore", 0);
+
+		Debug.Log (score);
+
+		TimeSpan span = TimeSpan.FromSeconds (score);
+
+		if (ScoreText != null) {
+			ScoreText.text = string.Format("Best score so far: {0:00}:{1:00}:{2:00}", span.Hours,span.Minutes, span.Seconds);
+		}
+	}
+		
 }

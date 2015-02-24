@@ -94,6 +94,13 @@ public class GameState : MonoBehaviour {
 
 	private IEnumerator RestartGame()
 	{
+		int score = Convert.ToInt32(Time.timeSinceLevelLoad);
+		Debug.Log(string.Format("rezultats {0}", score));
+		int oldHighscore = PlayerPrefs.GetInt("highscore", 0);    
+		if(score > oldHighscore)
+			PlayerPrefs.SetInt("highscore", score);
+		PlayerPrefs.Save ();
+		
 		float length = gameObject.GetComponent<Fading> ().Begin (1);
 		yield return new WaitForSeconds (length);
 		Application.LoadLevel ("Main 1");
